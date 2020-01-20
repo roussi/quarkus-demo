@@ -1,5 +1,10 @@
 package org.aroussi;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.ToString;
+
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -36,8 +41,8 @@ public class ExampleResource {
         return first;
     }
 
-    @Path("/products/{ref}")
     @PUT
+    @Path("/products/{ref}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public String updateProduct(@PathParam("ref") String ref,@Valid Product product) {
@@ -46,37 +51,10 @@ public class ExampleResource {
     }
 }
 
+@Data
+@ToString
+@AllArgsConstructor
 class Product {
-
     private String ref;
     private Double price;
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "ref='" + ref + '\'' +
-                ", price=" + price +
-                '}';
-    }
-
-    public Product(String ref, Double price) {
-        this.ref = ref;
-        this.price = price;
-    }
-
-    public String getRef() {
-        return ref;
-    }
-
-    public void setRef(String ref) {
-        this.ref = ref;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
 }
